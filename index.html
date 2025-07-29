@@ -1,287 +1,296 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitish Hegde | Senior Frontend Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The SPA is designed as a top-down narrative journey for a recruiter. It starts with a high-level introduction (Hero/Summary), then allows for a deep dive into tangible abilities (Skills Grid), followed by a clear visualization of career progression (Interactive Timeline for Experience), and culminates in a powerful summary of achievements (Impact Cards). This structure guides the user from "who you are" to "what you can do" and finally "what you have achieved," which is the most effective way to build a compelling case for a candidate. -->
-    <!-- Visualization & Content Choices: 
-        - Professional Summary: Goal: Inform. Method: Clean text block with bolded keywords. Justification: Provides immediate context and highlights key skills.
-        - Core Competencies: Goal: Organize/Inform. Method: Grouped lists with styled tags/badges. Interaction: None, direct visibility. Justification: Replaces chart with a clear, scannable list of all specific skills as requested, improving direct readability.
-        - Professional Experience: Goal: Show Change/Progression. Method: Interactive vertical timeline (HTML/CSS/JS). Interaction: Clicking a role expands to show details with bolded keywords. Justification: Intuitively visualizes career growth and emphasizes key achievements.
-        - Key Impact Metrics: Goal: Compare/Highlight. Method: Grid of "Stat Cards". Interaction: None, direct visibility. Justification: Replaces chart with high-impact visual cards that emphasize each key metric individually, making them stand out more than bars in a chart.
-        - Education: Goal: Inform. Method: Simple card. Justification: Standard, clean presentation for background information.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF7;
-            color: #3D3D3D;
-        }
-        .nav-link {
-            transition: color 0.3s ease, border-bottom-color 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #0D9488;
-            border-bottom-color: #0D9488;
-        }
-        .timeline-item .details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .timeline-item.open .details {
-            max-height: 500px;
-            overflow-y: auto;
-        }
-        .skill-tag {
-            background-color: rgba(13, 148, 136, 0.1);
-            color: #047857;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body class="antialiased">
+<!DOCTYPE html> 
+<html lang="en" class="scroll-smooth"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Nitish Hegde | Senior Frontend Engineer</title> 
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <style> 
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #FDFBF7; 
+            color: #3D3D3D; 
+        } 
+        .nav-link { 
+            transition: color 0.3s ease, border-bottom-color 0.3s ease; 
+            border-bottom: 2px solid transparent; 
+        } 
+        .nav-link:hover, .nav-link:focus, .nav-link.active { 
+            color: #0D9488; 
+            border-bottom-color: #0D9488; 
+        } 
+        .timeline-item .details { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.5s ease-in-out; 
+        } 
+        .timeline-item.open .details { 
+            max-height: 500px; 
+            overflow-y: auto; 
+        } 
+        .skill-tag { 
+            background-color: rgba(13, 148, 136, 0.1); 
+            color: #047857; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 9999px; 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+        } 
+        /* Added for keyboard focus visibility */ 
+        :focus { 
+            outline: 2px solid #0D9488; 
+            outline-offset: 2px; 
+        } 
+    </style> 
+</head> 
+<body class="antialiased"> 
 
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-teal-700">Nitish Hegde</div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#summary" class="nav-link pb-1">Summary</a>
-                <a href="#skills" class="nav-link pb-1">Skills</a>
-                <a href="#experience" class="nav-link pb-1">Experience</a>
-                <a href="#impact" class="nav-link pb-1">Impact</a>
-            </div>
-        </nav>
-    </header>
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm"> 
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Main Navigation"> 
+            <div class="text-xl font-bold text-teal-700">Nitish Hegde</div> 
+            <div class="hidden md:flex items-center space-x-8"> 
+                <a href="#summary" class="nav-link pb-1">Summary</a> 
+                <a href="#skills" class="nav-link pb-1">Skills</a> 
+                <a href="#experience" class="nav-link pb-1">Experience</a> 
+                <a href="#impact" class="nav-link pb-1">Impact</a> 
+            </div> 
+        </nav> 
+    </header> 
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-12"> 
 
-        <section id="hero" class="text-center py-16">
-            <h1 class="text-5xl md:text-6xl font-bold leading-tight">Nitish Hegde</h1>
-            <p class="text-xl md:text-2xl text-teal-600 mt-4">Senior Frontend Engineer | Web Developer</p>
-            <div class="mt-8 flex justify-center items-center space-x-6 text-sm">
-                <a href="mailto:nitish.hegde28@gmail.com" class="hover:text-teal-600 transition-colors">nitish.hegde28@gmail.com</a>
-                <span>&bull;</span>
-                <a href="https://www.linkedin.com/in/your-profile-url" target="_blank" class="hover:text-teal-600 transition-colors">LinkedIn</a>
-                <span>&bull;</span>
-                <a href="https://github.com/your-github-username" target="_blank" class="hover:text-teal-600 transition-colors">GitHub</a>
-            </div>
-        </section>
+        <section id="hero" class="text-center py-16" aria-labelledby="hero-heading"> 
+            <h1 id="hero-heading" class="text-5xl md:text-6xl font-bold leading-tight">Nitish Hegde</h1> 
+            <p class="text-xl md:text-2xl text-teal-600 mt-4">Senior Frontend Engineer</p> 
+            <div class="mt-8 flex justify-center items-center space-x-6 text-sm"> 
+                <a href="mailto:nitish.hegde95@gmail.com" class="hover:text-teal-600 transition-colors">nitish.hegde95@gmail.com</a> 
+                <span>•</span> 
+                <a href="https://www.linkedin.com/in/nitishh95/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-600 transition-colors">LinkedIn</a> 
+                <span>•</span> 
+                <a href="https://github.com/nitish-hegde-vst-au4" target="_blank" rel="noopener noreferrer" class="hover:text-teal-600 transition-colors">GitHub</a> 
+            </div> 
+        </section> 
 
-        <section id="summary" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-4">Professional Summary</h2>
-            <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700">
-                This section provides a high-level overview of my career, highlighting my core expertise and key achievements. It serves as a quick introduction to my professional identity as a Senior Frontend Engineer with a passion for building scalable and high-performance web applications.
-            </p>
-            <div class="mt-8 max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                <p class="text-lg leading-relaxed">
-                    Highly accomplished Senior Frontend Engineer with over 5 years of experience specializing in architecting and delivering scalable, high-performance web applications using <strong>React.js</strong>, <strong>Vue.js</strong>, and <strong>TypeScript</strong>. A proven leader in driving significant UX enhancements (e.g., <strong>40% load time reduction</strong> in a mobile portfolio tracker) and elevating team efficiency, including optimizing <strong>AI-driven solutions</strong> for seamless user experiences. Adept at fostering cross-functional collaboration and championing engineering standards in fast-paced, product-focused environments.
-                </p>
-            </div>
-        </section>
+        <section id="summary" class="py-16" aria-labelledby="summary-heading"> 
+            <h2 id="summary-heading" class="text-3xl font-bold text-center mb-4">Professional Summary</h2> 
+            <div class="mt-8 max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200"> 
+                <p class="text-lg leading-relaxed"> 
+                    Highly accomplished Senior Frontend Engineer with over 5 years of experience specializing in architecting and delivering scalable, high-performance web applications using <strong>React.js</strong>, <strong>Vue.js</strong>, and <strong>TypeScript</strong>. A proven leader in driving significant UX enhancements (e.g., <strong>40% load time reduction</strong> in a mobile portfolio tracker) and elevating team efficiency, including optimizing <strong>AI-driven solutions</strong> for seamless user experiences. Adept at fostering cross-functional collaboration and championing engineering standards in fast-paced, product-focused environments. 
+                </p> 
+            </div> 
+        </section> 
 
-        <section id="skills" class="py-16 bg-teal-50/50 rounded-2xl">
-            <h2 class="text-3xl font-bold text-center mb-4">Core Competencies</h2>
-            <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700 mb-12">
-                Here you'll find a detailed breakdown of my technical skill set. My competencies are grouped into key areas of development, with each specific skill listed clearly for easy review.
-            </p>
-            <div id="skills-container" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
-        </section>
+        <section id="skills" class="py-16 bg-teal-50/50 rounded-2xl" aria-labelledby="skills-heading"> 
+            <h2 id="skills-heading" class="text-3xl font-bold text-center mb-4">Core Competencies</h2> 
+            <div id="skills-container" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+            </div> 
+        </section> 
 
-        <section id="experience" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-4">Professional Experience</h2>
-             <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700 mb-12">
-                This interactive timeline showcases my career progression. Each entry represents a significant role in my journey. Click on any job title to expand the card and reveal the key responsibilities and accomplishments from that position.
-            </p>
-            <div class="relative max-w-4xl mx-auto">
-                <div class="absolute left-1/2 top-0 h-full w-0.5 bg-gray-200"></div>
-                <div id="timeline-container" class="space-y-16">
-                </div>
-            </div>
-        </section>
+        <section id="experience" class="py-16" aria-labelledby="experience-heading"> 
+            <h2 id="experience-heading" class="text-3xl font-bold text-center mb-4">Professional Experience</h2> 
+             <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700 mb-12"> 
+                This interactive timeline showcases my career progression. Each entry represents a significant role in my journey. Click on any job title to expand the card and reveal the key responsibilities and accomplishments from that position. 
+            </p> 
+            <div class="relative max-w-4xl mx-auto"> 
+                <div class="absolute left-1/2 top-0 h-full w-0.5 bg-gray-200" aria-hidden="true"></div> 
+                <div id="timeline-container" class="space-y-16"> 
+                </div> 
+            </div> 
+        </section> 
 
-        <section id="impact" class="py-16 bg-teal-50/50 rounded-2xl">
-            <h2 class="text-3xl font-bold text-center mb-4">Key Impact Metrics</h2>
-            <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700 mb-12">
-                This section distills my professional achievements into clear, quantifiable metrics. Each card highlights a specific, measurable impact I've had in my previous roles, demonstrating the value I bring to a team.
-            </p>
-            <div id="impact-container" class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
-        </section>
+        <section id="impact" class="py-16 bg-teal-50/50 rounded-2xl" aria-labelledby="impact-heading"> 
+            <h2 id="impact-heading" class="text-3xl font-bold text-center mb-4">Key Impact Metrics</h2> 
+            <p class="max-w-3xl mx-auto text-center text-lg leading-relaxed text-gray-700 mb-12"> 
+                This section distills my professional achievements into clear, quantifiable metrics. Each card highlights a specific, measurable impact I've had in my previous roles, demonstrating the value I bring to a team. 
+            </p> 
+            <div id="impact-container" class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> 
+            </div> 
+        </section> 
 
-        <section id="education" class="py-16">
-            <h2 class="text-3xl font-bold text-center mb-4">Education</h2>
-            <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center">
-                <h3 class="text-xl font-bold text-teal-700">Bachelor of Electronics Technology</h3>
-                <p class="text-gray-600 mt-2">Osmania University | Hyderabad, IN</p>
-                <p class="text-gray-500 text-sm mt-1">2016 - 2019</p>
-            </div>
-        </section>
+        <section id="education" class="py-16" aria-labelledby="education-heading"> 
+            <h2 id="education-heading" class="text-3xl font-bold text-center mb-4">Education</h2> 
+            <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center"> 
+                <h3 class="text-xl font-bold text-teal-700">Bachelor of Electronics Technology</h3> 
+                <p class="text-gray-600 mt-2">Osmania University | Hyderabad, IN</p> 
+                <p class="text-gray-500 text-sm mt-1">2016 - 2019</p> 
+            </div> 
+        </section> 
 
-    </main>
+    </main> 
 
-    <footer class="bg-gray-100 border-t border-gray-200">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-600">
-            <p>&copy; 2025 Nitish Hegde. Interactive resume created to showcase frontend skills.</p>
-        </div>
-    </footer>
+    <footer class="bg-gray-100 border-t border-gray-200" role="contentinfo"> 
+        <div class="container mx-auto px-6 py-8 text-center text-gray-600"> 
+            <p>© 2025 Nitish Hegde</p> 
+        </div> 
+    </footer> 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillsDetails = {
-                'Frontend Technologies': ['React.js', 'Vue.js', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'SCSS'],
-                'Mobile Development': ['React Native'],
-                'State Management': ['Redux', 'Vuex', 'React-Query'],
-                'UI/UX & Design Systems': ['Material UI', 'Tailwind CSS', 'ECharts', 'Component-Driven Development', 'Responsive Design', 'Accessibility (a11y)'],
-                'Performance & Optimization': ['Webpack', 'Lazy Loading', 'Code Splitting', 'API Optimization'],
-                'Testing & Quality': ['Jest', 'Test-Driven Development (TDD)', 'Unit Testing', 'Code Reviews'],
-                'Development Practices': ['Agile/Scrum', 'CI/CD', 'Git', 'RESTful APIs'],
-                'Cloud & Backend': ['Node.js', 'AWS S3']
-            };
+    <script> 
+        document.addEventListener('DOMContentLoaded', () => { 
+            const skillsDetails = { 
+                'Frontend Technologies': ['React.js', 'Vue.js', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'SCSS'], 
+                'Mobile Development': ['React Native'], 
+                'State Management': ['Redux', 'Vuex', 'React-Query'], 
+                'UI/UX & Design Systems': ['Material UI', 'Tailwind CSS', 'ECharts', 'Component-Driven Development', 'Responsive Design', 'Accessibility (a11y)'], 
+                'Performance & Optimization': ['Webpack', 'Lazy Loading', 'Code Splitting', 'API Optimization'], 
+                'Testing & Quality': ['Jest', 'Test-Driven Development (TDD)', 'Unit Testing', 'Code Reviews'], 
+                'Development Practices': ['Agile/Scrum', 'CI/CD', 'Git', 'RESTful APIs'], 
+                'Cloud & Backend': ['Node.js', 'AWS S3'] 
+            }; 
 
-            const skillsContainer = document.getElementById('skills-container');
-            for (const category in skillsDetails) {
-                const categoryEl = document.createElement('div');
-                categoryEl.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200';
-                let skillsHTML = `<h3 class="text-lg font-bold text-teal-700 mb-4">${category}</h3><div class="flex flex-wrap gap-2">`;
-                skillsDetails[category].forEach(skill => {
-                    skillsHTML += `<span class="skill-tag">${skill}</span>`;
-                });
-                skillsHTML += `</div>`;
-                categoryEl.innerHTML = skillsHTML;
-                skillsContainer.appendChild(categoryEl);
-            }
+            const skillsContainer = document.getElementById('skills-container'); 
+            for (const category in skillsDetails) { 
+                const categoryEl = document.createElement('div'); 
+                categoryEl.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200'; 
+                let skillsHTML = `<h3 class="text-lg font-bold text-teal-700 mb-4">${category}</h3><div class="flex flex-wrap gap-2">`; 
+                skillsDetails[category].forEach(skill => { 
+                    skillsHTML += `<span class="skill-tag">${skill}</span>`; 
+                }); 
+                skillsHTML += `</div>`; 
+                categoryEl.innerHTML = skillsHTML; 
+                skillsContainer.appendChild(categoryEl); 
+            } 
 
-            const experienceData = [
-                {
-                    role: 'Software Engineer (Founding Team)',
-                    company: 'Stock Unlock (YC W22)',
-                    location: 'New York, USA (Remote)',
-                    period: 'Feb 2024 - Present',
-                    points: [
-                        'Spearheaded the end-to-end development of a high-performance <strong>React Native</strong> mobile app, successfully handling portfolios with over <strong>15,000 transactions</strong> and visualizing <strong>25+ years</strong> of historical financial data.',
-                        'Revamped the portfolio tracker by optimizing data readability and integrating time-weighted return calculations, leading to a <strong>25% increase in user engagement</strong>.',
-                        'Optimized <strong>AI-generated stock reports</strong> by making them non-blocking, significantly improving the user experience.',
-                        'Established mobile app architecture and engineering best practices, ensuring scalability and maintainability for future development.'
-                    ]
-                },
-                {
-                    role: 'SDE UI 2',
-                    company: 'CommerceIQ',
-                    location: 'Bengaluru, IN',
-                    period: 'Dec 2021 - Feb 2024',
-                    points: [
-                        'Drove the architectural design and implementation of a cross-functional, reusable UI component library, <strong>reducing feature delivery time by 30%</strong> across more than 5 product teams.',
-                        'Architected and implemented an automated internal data ingestion tool using <strong>Node.js</strong> and <strong>AWS S3</strong>, <strong>reducing data processing time from over 8 hours to just 10 minutes</strong>.',
-                        'Spearheaded the development of highly configurable <strong>Vue.js dashboards</strong> for over 2,200 global brands, enabling efficient tracking of key business insights.',
-                        'Directed and optimized the technical hiring process, contributing to a <strong>20% growth in the engineering team</strong> while elevating code quality standards.'
-                    ]
-                },
-                {
-                    role: 'Product Development Engineer',
-                    company: 'Sugoi Labs',
-                    location: 'Bengaluru, IN',
-                    period: 'Aug 2020 - Dec 2021',
-                    points: [
-                        'Directed the end-to-end frontend development for the MINEO platform, successfully connecting Founders with Investors within an aggressive 4-month timeline.',
-                        'Strategically integrated Instagram\'s API for a dating application, a key feature that <strong>boosted user engagement by 35%</strong>.',
-                        'Developed and maintained dynamic, responsive user interfaces using <strong>React.js</strong> and <strong>Tailwind CSS</strong>, resulting in a <strong>20% increase in user retention</strong>.',
-                        'Led the critical migration of state management from <strong>Redux</strong> to <strong>React-Query</strong>, significantly improving data fetching efficiency and reducing application load times.'
-                    ]
-                },
-                {
-                    role: 'Jr. Product Engineer',
-                    company: 'Hubilo',
-                    location: 'Ahmedabad, IN',
-                    period: 'Jun 2020 - Aug 2020',
-                    points: [
-                        'Designed and implemented responsive dashboard UIs using <strong>React.js</strong> and <strong>Material UI</strong>, optimizing user experience and achieving faster load times for critical business insights.'
-                    ]
-                }
-            ];
+            const experienceData = [ 
+                { 
+                    role: 'Software Engineer (Founding Team)', 
+                    company: 'Stock Unlock (YC W22)', 
+                    location: 'New York, USA (Remote)', 
+                    period: 'Feb 2024 - Present', 
+                    points: [ 
+                        'Spearheaded the end-to-end development of a high-performance <strong>React Native</strong> mobile app, successfully handling portfolios with over <strong>15,000 transactions</strong> and visualizing <strong>25+ years</strong> of historical financial data.', 
+                        'Revamped the portfolio tracker by optimizing data readability and integrating time-weighted return calculations, leading to a <strong>25% increase in user engagement</strong>.', 
+                        'Optimized <strong>AI-generated stock reports</strong> by making them non-blocking, significantly improving the user experience.', 
+                        'Established mobile app architecture and engineering best practices, ensuring scalability and maintainability for future development.' 
+                    ] 
+                }, 
+                { 
+                    role: 'SDE UI 2', 
+                    company: 'CommerceIQ', 
+                    location: 'Bengaluru, IN', 
+                    period: 'Dec 2021 - Feb 2024', 
+                    points: [ 
+                        'Drove the architectural design and implementation of a cross-functional, reusable UI component library, <strong>reducing feature delivery time by 30%</strong> across more than 5 product teams.', 
+                        'Architected and implemented an automated internal data ingestion tool using <strong>Node.js</strong> and <strong>AWS S3</strong>, <strong>reducing data processing time from over 8 hours to just 10 minutes</strong>.', 
+                        'Spearheaded the development of highly configurable <strong>Vue.js dashboards</strong> for over 2,200 global brands, enabling efficient tracking of key business insights.', 
+                        'Directed and optimized the technical hiring process, contributing to a <strong>20% growth in the engineering team</strong> while elevating code quality standards.' 
+                    ] 
+                }, 
+                { 
+                    role: 'Product Development Engineer', 
+                    company: 'Sugoi Labs', 
+                    location: 'Bengaluru, IN', 
+                    period: 'Aug 2020 - Dec 2021', 
+                    points: [ 
+                        'Directed the end-to-end frontend development for the MINEO platform, successfully connecting Founders with Investors within an aggressive 4-month timeline.', 
+                        'Strategically integrated Instagram\'s API for a dating application, a key feature that <strong>boosted user engagement by 35%</strong>.', 
+                        'Developed and maintained dynamic, responsive user interfaces using <strong>React.js</strong> and <strong>Tailwind CSS</strong>, resulting in a <strong>20% increase in user retention</strong>.', 
+                        'Led the critical migration of state management from <strong>Redux</strong> to <strong>React-Query</strong>, significantly improving data fetching efficiency and reducing application load times.' 
+                    ] 
+                }, 
+                { 
+                    role: 'Jr. Product Engineer', 
+                    company: 'Hubilo', 
+                    location: 'Ahmedabad, IN', 
+                    period: 'Jun 2020 - Aug 2020', 
+                    points: [ 
+                        'Designed and implemented responsive dashboard UIs using <strong>React.js</strong> and <strong>Material UI</strong>, optimizing user experience and achieving faster load times for critical business insights.' 
+                    ] 
+                } 
+            ]; 
 
-            const timelineContainer = document.getElementById('timeline-container');
-            experienceData.forEach((job, index) => {
-                const item = document.createElement('div');
-                item.className = 'timeline-item relative';
-                const isLeft = index % 2 === 0;
-                
-                item.innerHTML = `
-                    <div class="ml-auto ${isLeft ? 'md:mr-[50%]' : 'md:ml-[50%]'} md:pl-8 relative pr-4 md:pr-0">
-                        <div class="absolute -left-1.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-teal-600 border-4 border-white"></div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 cursor-pointer timeline-header">
-                            <p class="text-gray-500 text-sm">${job.period}</p>
-                            <h3 class="text-xl font-bold mt-1 text-teal-700">${job.role}</h3>
-                            <p class="text-gray-600">${job.company} | ${job.location}</p>
-                            <div class="details mt-4">
-                                <ul class="space-y-3 text-gray-700 list-disc list-inside">
-                                    ${job.points.map(p => `<li>${p}</li>`).join('')}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                timelineContainer.appendChild(item);
-            });
+            const timelineContainer = document.getElementById('timeline-container'); 
+            experienceData.forEach((job, index) => { 
+                const item = document.createElement('div'); 
+                item.className = 'timeline-item relative'; 
+                const isLeft = index % 2 === 0; 
 
-            document.querySelectorAll('.timeline-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    header.closest('.timeline-item').classList.toggle('open');
-                });
-            });
+                const headerId = `timeline-header-${index}`;
+                const detailsId = `timeline-details-${index}`;
 
-            const impactData = [
-                { value: '35%', label: 'User Engagement Boost' },
-                { value: '30%', label: 'Feature Delivery Time Reduction' },
-                { value: '25%', label: 'User Engagement Increase' },
-                { value: '20%', label: 'User Retention Increase' },
-                { value: '8+ hrs', label: 'Data Processing Time Reduced to 10 Mins' },
-                { value: '20%', label: 'Engineering Team Growth' }
-            ];
+                item.innerHTML = ` 
+                    <div class="ml-auto ${isLeft ? 'md:mr-[50%]' : 'md:ml-[50%]'} md:pl-8 relative pr-4 md:pr-0"> 
+                        <div class="absolute -left-1.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-teal-600 border-4 border-white" aria-hidden="true"></div> 
+                        <div id="${headerId}" role="button" tabindex="0" aria-expanded="false" aria-controls="${detailsId}" class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 cursor-pointer timeline-header"> 
+                            <p class="text-gray-500 text-sm">${job.period}</p> 
+                            <h3 class="text-xl font-bold mt-1 text-teal-700">${job.role}</h3> 
+                            <p class="text-gray-600">${job.company} | ${job.location}</p> 
+                            <div id="${detailsId}" class="details mt-4" aria-hidden="true"> 
+                                <ul class="space-y-3 text-gray-700 list-disc list-inside"> 
+                                    ${job.points.map(p => `<li>${p}</li>`).join('')} 
+                                </ul> 
+                            </div> 
+                        </div> 
+                    </div> 
+                `; 
+                timelineContainer.appendChild(item); 
+            }); 
 
-            const impactContainer = document.getElementById('impact-container');
-            impactData.forEach(impact => {
-                const impactCard = document.createElement('div');
-                impactCard.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center flex flex-col justify-center items-center';
-                impactCard.innerHTML = `
-                    <p class="text-4xl font-bold text-teal-600">${impact.value}</p>
-                    <p class="mt-2 text-gray-600">${impact.label}</p>
-                `;
-                impactContainer.appendChild(impactCard);
-            });
+            document.querySelectorAll('.timeline-header').forEach(header => { 
+                header.addEventListener('click', () => { 
+                    toggleTimelineItem(header); 
+                }); 
+                header.addEventListener('keydown', (event) => { 
+                    if (event.key === 'Enter' || event.key === ' ') { 
+                        event.preventDefault(); 
+                        toggleTimelineItem(header); 
+                    } 
+                }); 
+            }); 
+            function toggleTimelineItem(header) { 
+                const item = header.closest('.timeline-item'); 
+                const details = header.querySelector('.details'); 
+                const isExpanded = header.getAttribute('aria-expanded') === 'true'; 
 
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section');
+                header.setAttribute('aria-expanded', !isExpanded); 
+                details.setAttribute('aria-hidden', isExpanded); 
+                item.classList.toggle('open'); 
+            } 
 
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
-                        current = section.getAttribute('id');
-                    }
-                });
+            const impactData = [ 
+                { value: '35%', label: 'User Engagement Boost' }, 
+                { value: '30%', label: 'Feature Delivery Time Reduction' }, 
+                { value: '25%', label: 'User Engagement Increase' }, 
+                { value: '20%', label: 'User Retention Increase' }, 
+                { value: '8+ hrs', label: 'Data Processing Time Reduced to 10 Mins' }, 
+                { value: '20%', label: 'Engineering Team Growth' } 
+            ]; 
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
-</body>
+            const impactContainer = document.getElementById('impact-container'); 
+            impactData.forEach(impact => { 
+                const impactCard = document.createElement('div'); 
+                impactCard.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center flex flex-col justify-center items-center'; 
+                impactCard.innerHTML = ` 
+                    <p class="text-4xl font-bold text-teal-600">${impact.value}</p> 
+                    <p class="mt-2 text-gray-600">${impact.label}</p> 
+                `; 
+                impactContainer.appendChild(impactCard); 
+            }); 
+
+            const navLinks = document.querySelectorAll('.nav-link'); 
+            const sections = document.querySelectorAll('main section'); 
+
+            window.addEventListener('scroll', () => { 
+                let current = ''; 
+                sections.forEach(section => { 
+                    const sectionTop = section.offsetTop; 
+                    if (window.pageYOffset >= sectionTop - 75) { 
+                        current = section.getAttribute('id'); 
+                    } 
+                }); 
+
+                navLinks.forEach(link => { 
+                    link.classList.remove('active'); 
+                    link.removeAttribute('aria-current'); 
+                    if (link.getAttribute('href').includes(current)) { 
+                        link.classList.add('active'); 
+                        link.setAttribute('aria-current', 'page'); 
+                    } 
+                }); 
+            }); 
+        }); 
+    </script> 
+</body> 
 </html>
